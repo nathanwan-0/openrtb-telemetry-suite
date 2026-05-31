@@ -1,3 +1,8 @@
+<img width="1920" height="903" alt="image" src="https://github.com/user-attachments/assets/258ab812-d33b-4379-8c0d-0fa267ca6c6f" />
+<img width="1920" height="901" alt="image" src="https://github.com/user-attachments/assets/6db52c14-9606-4679-bcd0-3c63f16e619a" />
+<img width="1920" height="907" alt="image" src="https://github.com/user-attachments/assets/66a9c8e9-1b9e-4cea-b120-02b62647f5ac" />
+
+
 # Real-Time Ad Buying Simulator (DSP Dashboard)
 
 This project is a high-speed simulation of a **Demand-Side Platform (DSP)**. In the advertising world, a DSP is the "brain" that companies use to automatically buy ad space across the internet in real-time. Think of it as a high-frequency trading platform, but for digital ads instead of stocks.
