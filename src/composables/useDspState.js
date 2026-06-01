@@ -41,11 +41,13 @@ function recalculateAggregates() {
 
   const total = historicalEvents.length;
   const wins = historicalEvents.filter(e => e.type === 'AUCTION_WON');
+  const clicks = historicalEvents.filter(e => e.type === 'CLICK');
   const ivtCount = historicalEvents.filter(e => e.isIvt);
   const filteredCount = historicalEvents.filter(e => e.filtered);
 
   // Compute metrics using a rolling history sequence
   state.winRate = (wins.length / (total - filteredCount.length || 1)) * 100;
+  state.ctr = (clicks.length / (wins.length || 1));
   
   const totalCpm = wins.reduce((sum, e) => sum + e.cpm, 0);
   state.eCpm = totalCpm / (wins.length || 1);

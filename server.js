@@ -42,6 +42,16 @@ function generateBidEvent() {
   const win = Math.random() < winProbability;
 
   if (win) {
+    // 5% chance of a click
+    if (Math.random() < 0.05) {
+      return {
+        id, timestamp, ssp, format,
+        type: 'CLICK',
+        message: `User clicked on ${format} placement on ${ssp}.`,
+        cpm, isIvt: isIvtOpportunity, filtered: false
+      };
+    }
+
     return {
       id, timestamp, ssp, format,
       type: 'AUCTION_WON',
