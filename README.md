@@ -85,4 +85,20 @@ The home of the **DCO Engine**. Here you can see which ad formats (Video vs. Dis
     npm run dev
     ```
 
-Open the link shown in Terminal 2 (usually `http://localhost:5173`) to see the live system.
+---
+
+## Technical Overview
+
+### 1. System Architecture
+"I built a real-time AdTech telemetry dashboard simulating a Demand-Side Platform (DSP). The system is split into two parts:
+*   **Backend (Auction Engine):** A Node.js server simulating a high-frequency trading environment, processing high-volume requests (OpenRTB auctions) and handling SIVT (bot) detection logic.
+*   **Frontend (Telemetry Dashboard):** A Vue 3 application using Tailwind CSS, communicating via WebSockets to provide real-time updates of auction metrics and allowing bidirectional control (e.g., toggling Guardrails, adjusting Bid Floors)."
+
+### 2. Engineering Challenges
+*   **High-Velocity Data Handling:** The engine generates events rapidly. I used Vue's reactive state management combined with a rolling history buffer to limit data display to the last 200 events, preventing memory leaks and ensuring UI performance.
+*   **State Synchronization:** I abstracted WebSocket communication into a dedicated composable (`useDspState.js`), enforcing a single source of truth for system configuration between the client dashboard and the server engine.
+*   **Dynamic Data Transformation:** Metrics like CTR and Win Rate are not static; I implemented event-driven aggregation that filters incoming stream events (`AUCTION_WON` vs `CLICK`) to recalculate KPIs in real-time.
+
+### 3. Design Philosophy
+"The dashboard is designed with a professional, high-contrast corporate style. My focus was on **optimizing the signal-to-noise ratio**. By prioritizing clear typography, a structured layout, and functional UI feedback, I improved data legibility and allowed users to scan critical performance KPIs faster, which is essential in high-frequency monitoring environments."
+
