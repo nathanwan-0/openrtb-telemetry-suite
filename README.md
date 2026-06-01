@@ -1,6 +1,6 @@
 <img width="1920" height="894" alt="image" src="https://github.com/user-attachments/assets/b349ef62-31af-454a-aa04-02bc25b5b5c6" />
-<img width="1920" height="901" alt="image" src="https://github.com/user-attachments/assets/6db52c14-9606-4679-bcd0-3c63f16e619a" />
-<img width="1920" height="907" alt="image" src="https://github.com/user-attachments/assets/66a9c8e9-1b9e-4cea-b120-02b62647f5ac" />
+<img width="1920" height="903" alt="image" src="https://github.com/user-attachments/assets/7ee36460-f2b7-41d0-89c2-69e5cfe03f11" />
+<img width="1920" height="907" alt="image" src="https://github.com/user-attachments/assets/0bb0cba8-5188-4711-8aa9-55f92c5825ee" />
 
 
 # Real-Time Ad Buying Simulator (DSP Dashboard)
