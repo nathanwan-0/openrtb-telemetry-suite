@@ -1,51 +1,51 @@
 <template>
-  <div class="flex h-screen w-full bg-[#030303] text-slate-100 font-sans overflow-hidden select-none relative">
+  <div class="flex h-screen w-full bg-[#0b0e14] text-slate-100 font-sans overflow-hidden select-none relative">
     
-    <!-- Depth Glows -->
-    <div class="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-indigo-500/10 blur-[120px] rounded-full"></div>
-    <div class="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-violet-500/10 blur-[120px] rounded-full"></div>
-
     <!-- Glass Sidebar -->
-    <aside class="w-64 glass-panel border-r border-white/5 flex flex-col justify-between p-6 shrink-0 z-20 relative">
+    <aside class="w-64 panel border-r border-white/5 flex flex-col justify-between p-6 shrink-0 z-20 relative">
       <div class="space-y-8">
         <div class="flex items-center gap-3 px-2 py-1">
-          <div class="w-2.5 h-2.5 rounded-full bg-indigo-500 shadow-[0_0_15px_#6366f1] animate-pulse"></div>
-          <span class="text-xs font-black uppercase tracking-[0.2em] text-white/90">DSP Core</span>
+          <svg class="w-4 h-4 text-indigo-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2" ry="2"/><rect x="9" y="9" width="6" height="6"/><line x1="9" y1="1" x2="9" y2="4"/><line x1="15" y1="1" x2="15" y2="4"/><line x1="9" y1="20" x2="9" y2="23"/><line x1="15" y1="20" x2="15" y2="23"/><line x1="20" y1="9" x2="23" y2="9"/><line x1="20" y1="15" x2="23" y2="15"/><line x1="1" y1="9" x2="4" y2="9"/><line x1="1" y1="15" x2="4" y2="15"/></svg>
+          <span class="text-xs font-semibold uppercase tracking-[0.2em] text-white/90">DSP Core</span>
         </div>
 
         <nav class="space-y-2">
           <button v-for="tab in ['overview', 'network', 'dco']" :key="tab"
-            @click="activeTab = tab"
-            :class="activeTab === tab ? 'bg-white/10 text-white border-white/10' : 'text-slate-400 hover:text-slate-200 hover:bg-white/5 border-transparent'"
-            class="w-full text-left px-4 py-3 rounded-xl text-[10px] font-bold uppercase tracking-widest transition-all duration-300 flex items-center gap-3 border"
+          @click="activeTab = tab"
+          :class="activeTab === tab ? 'bg-white/10 text-white border-white/10' : 'text-slate-400 hover:text-slate-100 hover:bg-white/5 border-transparent'"
+          class="w-full text-left px-4 py-3 rounded-xl text-[11px] font-semibold uppercase tracking-widest transition-all duration-300 flex items-center gap-3 border cursor-pointer"
           >
-            <span class="w-1.5 h-1.5 rounded-full bg-current"></span>
+            <!-- Icons for navigation -->
+            <svg v-if="tab === 'overview'" class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+            <svg v-else-if="tab === 'network'" class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+            <svg v-else class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M2 12h20"/></svg>
+            
             {{ tab === 'dco' ? 'Test Variants' : tab.charAt(0).toUpperCase() + tab.slice(1) }}
           </button>
         </nav>
 
         <!-- Bid Price Slider -->
-        <div class="pt-6 border-t border-white/5 space-y-4">
-          <div class="flex justify-between text-[9px] font-black uppercase tracking-widest text-indigo-400">
+        <div class="pt-6 border-t border-white/10 space-y-4">
+          <div class="flex justify-between text-[10px] font-semibold uppercase tracking-widest text-indigo-400">
             <span>Bid Price (Floor)</span>
             <span>${{ bidFloor.toFixed(2) }}</span>
           </div>
           <input type="range" min="0.5" max="5.0" step="0.1" v-model.number="bidFloorInput" @input="updateBidFloor(bidFloorInput)"
-            class="w-full h-1 bg-white/10 rounded-lg appearance-none cursor-pointer accent-indigo-500">
-          <p class="text-[9px] text-slate-500 leading-tight">
+            class="w-full h-1 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-indigo-500">
+          <p class="text-[10px] text-slate-400 leading-tight">
             Setting a high <b>Bid Floor</b> helps you win more ads, while a low floor saves money but limits your reach.
           </p>
         </div>
       </div>
 
-      <div class="p-4 bg-white/5 border border-white/10 rounded-2xl">
-        <span class="text-[9px] font-black text-indigo-400 tracking-[0.15em] uppercase block mb-2">SIVT Mitigation</span>
-        <p class="text-[10px] text-slate-400 leading-relaxed mb-4 text-left">
+      <div class="p-5 bg-white/5 border border-white/10 rounded-2xl">
+        <span class="text-[10px] font-semibold text-indigo-400 tracking-[0.15em] uppercase block mb-2">SIVT Mitigation</span>
+        <p class="text-[11px] text-slate-400 leading-relaxed mb-4 text-left">
           Blocks bots and fake traffic using behavioral patterns. This ensures you only pay for ads real people see.
         </p>
         <button @click="toggleSivtFilter"
-          :class="sivtFilterActive ? 'bg-emerald-500/10 border-emerald-500/20 text-emerald-400' : 'bg-amber-500/10 border-amber-500/20 text-amber-400'"
-          class="w-full py-2.5 text-[9px] font-black rounded-lg border uppercase tracking-widest transition-all cursor-pointer">
+          :class="sivtFilterActive ? 'bg-emerald-950/30 border-emerald-500/30 text-emerald-400' : 'bg-amber-950/30 border-amber-500/30 text-amber-400'"
+          class="w-full py-2.5 text-[10px] font-semibold rounded-lg border uppercase tracking-widest transition-all cursor-pointer hover:opacity-90">
           {{ sivtFilterActive ? 'Guardrails: Active' : 'Guardrails: Off' }}
         </button>
       </div>
@@ -60,7 +60,7 @@
           </h1>
           <div class="h-4 w-px bg-white/10"></div>
           <div class="flex items-center gap-2">
-            <div class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse-soft"></div>
+            <div class="w-1.5 h-1.5 rounded-full bg-emerald-500"></div>
             <span class="text-[9px] font-bold text-emerald-500/80 uppercase tracking-widest">OpenRTB Pipeline</span>
           </div>
         </div>
@@ -71,7 +71,7 @@
             <div v-if="currentAlert" :key="currentAlert.id" 
                  :class="currentAlert.type === 'warning' ? 'text-amber-400' : 'text-indigo-400'"
                  class="text-[9px] font-black uppercase tracking-widest flex items-center justify-center gap-3">
-              <span class="animate-pulse">▶</span> {{ currentAlert.msg }}
+              <span>-</span> {{ currentAlert.msg }}
             </div>
           </transition>
         </div>
@@ -87,7 +87,7 @@
         <!-- Tab: Overview -->
         <div v-if="activeTab === 'overview'" class="flex-1 flex flex-col space-y-8 overflow-hidden">
           <div class="grid grid-cols-1 md:grid-cols-4 gap-6 shrink-0">
-            <div v-for="stat in stats" :key="stat.label" class="p-6 bg-white/5 border border-white/10 rounded-3xl glow-card group relative overflow-hidden">
+            <div v-for="stat in stats" :key="stat.label" class="p-6 bg-white/5 border border-white/10 rounded-3xl group relative overflow-hidden">
               <div class="absolute bottom-0 left-0 w-full h-1/2 opacity-20 pointer-events-none">
                 <svg viewBox="0 0 100 40" class="w-full h-full">
                   <path :d="generateSparkline(stat.hist)" fill="none" stroke="currentColor" :class="stat.color" stroke-width="2" vector-effect="non-scaling-stroke" />
@@ -101,10 +101,9 @@
           </div>
 
           <div class="flex-1 bg-black/40 border border-white/5 rounded-[2rem] p-8 flex flex-col overflow-hidden relative group">
-            <div class="scanline absolute inset-0 rounded-[2rem] opacity-20 pointer-events-none"></div>
             <div class="flex justify-between items-center pb-6 border-b border-white/5 mb-6 relative z-10">
               <span class="text-[10px] font-black text-white/60 tracking-[0.2em] uppercase flex items-center gap-3">
-                <span class="w-2 h-2 rounded-full bg-indigo-500 animate-pulse"></span>
+                <span class="w-2 h-2 rounded-full bg-indigo-500"></span>
                 Transaction Audit Output
               </span>
               <span class="text-[9px] font-mono text-emerald-500/60 font-black">Status: 200 OK</span>
@@ -132,7 +131,7 @@
                 </svg>
               </div>
               <div v-for="dot in mapEvents" :key="'p-'+dot.id" :style="{ left: dot.x + '%', top: dot.y + '%' }" class="map-dot absolute w-1 h-1 rounded-full">
-                <div class="absolute inset-0 animate-map-pulse" :class="dot.type === 'AUCTION_WON' ? 'bg-emerald-500' : 'bg-indigo-500'"></div>
+                <div class="absolute inset-0" :class="dot.type === 'AUCTION_WON' ? 'bg-emerald-500' : 'bg-indigo-500'"></div>
               </div>
               <div class="relative z-10 flex justify-between mb-8">
                 <div>
@@ -239,7 +238,27 @@ const logTypeClass = (type) => ({
 const statusClass = (log) => log.filtered ? 'text-amber-400/80' : log.type === 'AUCTION_WON' ? 'text-emerald-400/80' : 'text-white/10';
 
 watch(winRate, (val) => val < 5 && activeTab.value === 'overview' && addAlert("Warning: Win Rate too low. We are being outbid.", "warning"));
-watch(ivtRate, (val) => val > 8 && !sivtFilterActive.value && addAlert("Alert: High Bot Traffic. Protection recommended.", "warning"));
+watch(sivtFilterActive, (active) => {
+  if (active) {
+    // Remove all bot traffic alerts
+    alerts.value = alerts.value.filter(alert => !alert.msg.includes("High Bot Traffic"));
+  }
+});
+
+watch(ivtRate, (val) => {
+  if (val > 8) {
+    if (!sivtFilterActive.value) {
+      // Avoid duplicate bot traffic alerts
+      const hasBotAlert = alerts.value.some(alert => alert.msg.includes("High Bot Traffic"));
+      if (!hasBotAlert) {
+        addAlert("Alert: High Bot Traffic. Protection recommended.", "warning");
+      }
+    }
+  } else {
+    // Optionally clear alert if traffic is normal
+    alerts.value = alerts.value.filter(alert => !alert.msg.includes("High Bot Traffic"));
+  }
+});
 
 const generateSparkline = (data) => {
   if (!data || data.length < 2) return '';
